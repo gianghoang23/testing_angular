@@ -1,0 +1,25 @@
+<main>
+  <app-header></app-header>
+  <app-sidebar></app-sidebar>
+
+  <main class="pt-20 pl-72 px-6 flex flex-row gap-1 flex-wrap">
+    <iframe
+      [src]="iframeSrc['stockQuotes']['path']"
+      frameborder="0"
+      class="w-full h-[300px]"
+    ></iframe>
+
+    <iframe
+      [src]="iframeSrc['technicalChart']['path']"
+      frameborder="0"
+      [scrolling]="false"
+      class="w-full h-[750px]"
+    ></iframe>
+
+    <iframe
+      [src]="iframeSrc['incomeStatement']['path']"
+      frameborder="0"
+      class="w-full h-[1000px]"
+    ></iframe>
+  </main>
+</main>
