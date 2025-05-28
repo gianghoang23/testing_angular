@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   [x: string]: any;
   token: string | null = null;
   iframeSrc: Record<string, WidgetIframe> = {};
+  iframeWidgets: { key: string; path: SafeResourceUrl; height: number }[] = [];
   constructor(
     private authService: AuthService,
     private sanitizer: DomSanitizer
@@ -42,20 +43,38 @@ export class HomeComponent implements OnInit {
         path: this.sanitizer.bypassSecurityTrustResourceUrl(
           `http://localhost:3000/widgetlibrary_dev/s360/income-statement/01?quoteHeader=1&widgetBorder=1&widgetPaddingTop=16&widgetPaddingRight=24&widgetPaddingBottom=36&widgetPaddingLeft=24&locale=en-US&theme=light&language=en&ric=MSFT.O&token=${this.token}`
         ),
-        height: 1000,
+        height: 850,
       },
       balanceSheet: {
         path: this.sanitizer.bypassSecurityTrustResourceUrl(
           `http://localhost:3000/widgetlibrary_dev/s360/balance-sheet/01?quoteHeader=1&widgetBorder=1&widgetPaddingTop=16&widgetPaddingRight=24&widgetPaddingBottom=36&widgetPaddingLeft=24&locale=en-US&theme=light&language=en&ric=MSFT.O&token=${this.token}`
         ),
-        height: 500,
+        height: 850,
       },
       cashFlow: {
         path: this.sanitizer.bypassSecurityTrustResourceUrl(
           `http://localhost:3000/widgetlibrary_dev/s360/cash-flow/01?quoteHeader=1&widgetBorder=1&widgetPaddingTop=16&widgetPaddingRight=24&widgetPaddingBottom=36&widgetPaddingLeft=24&locale=en-US&theme=light&language=en&ric=MSFT.O&token=${this.token}`
         ),
+        height: 700,
+      },
+      analystTargetPrice: {
+        path: this.sanitizer.bypassSecurityTrustResourceUrl(
+          'http://localhost:3000/widgetlibrary_dev/s360/target-price/01?quoteHeader=1&widgetBorder=1&widgetPaddingTop=16&widgetPaddingRight=24&widgetPaddingBottom=36&widgetPaddingLeft=24&locale=en-US&theme=light&language=en&ric=MSFT.O&token=' +
+            this.token
+        ),
+        height: 500,
+      },
+      brokerRating: {
+        path: this.sanitizer.bypassSecurityTrustResourceUrl(
+          `http://localhost:3000/widgetlibrary_dev/s360/broker-rating/01?quoteHeader=1&widgetBorder=1&widgetPaddingTop=16&widgetPaddingRight=24&widgetPaddingBottom=36&widgetPaddingLeft=24&locale=en-US&theme=light&language=en&ric=MSFT.O&token=${this.token}`
+        ),
         height: 500,
       },
     };
+    this.iframeWidgets = Object.entries(this.iframeSrc).map(([key, value]) => ({
+      key,
+      path: value.path,
+      height: value.height,
+    }));
   }
 }

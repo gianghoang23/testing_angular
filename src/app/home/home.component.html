@@ -3,23 +3,13 @@
   <app-sidebar></app-sidebar>
 
   <main class="pt-20 pl-72 px-6 flex flex-row gap-1 flex-wrap">
+    @for (widget of iframeWidgets; track $index) {
     <iframe
-      [src]="iframeSrc['stockQuotes']['path']"
+      [src]="widget['path']"
       frameborder="0"
-      class="w-full h-[300px]"
+      [style.height.px]="widget['height']"
+      class="w-full"
     ></iframe>
-
-    <iframe
-      [src]="iframeSrc['technicalChart']['path']"
-      frameborder="0"
-      [scrolling]="false"
-      class="w-full h-[750px]"
-    ></iframe>
-
-    <iframe
-      [src]="iframeSrc['incomeStatement']['path']"
-      frameborder="0"
-      class="w-full h-[1000px]"
-    ></iframe>
+    }
   </main>
 </main>
