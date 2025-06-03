@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { SidebarComponent } from '../components/sidebar/sidebar.component';
 import { HeaderComponent } from '../components/header/header.component';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { WIDGET_LIB_URL } from '../shared/constants/app.constants';
 
 interface WidgetIframe {
   path: SafeResourceUrl;
@@ -29,44 +30,49 @@ export class HomeComponent implements OnInit {
     this.iframeSrc = {
       stockQuotes: {
         path: this.sanitizer.bypassSecurityTrustResourceUrl(
-          `http://localhost:3000/widgetlibrary_dev/s360/stock-quote/03?quoteHeader=1&widgetBorder=1&widgetPaddingTop=16&widgetPaddingRight=24&widgetPaddingBottom=36&widgetPaddingLeft=24&locale=en-US&theme=light&language=en&ric=MSFT.O&token=${this.token}`
+          WIDGET_LIB_URL.STOCK_QUOTES + `&token=${this.token}`
         ),
         height: 300,
       },
       technicalChart: {
         path: this.sanitizer.bypassSecurityTrustResourceUrl(
-          `http://localhost:3000/widgetlibrary_dev/s360/advanced-chart/01?widgetBorder=1&quoteHeader=1&widgetPaddingTop=16&widgetPaddingRight=24&widgetPaddingBottom=36&widgetPaddingLeft=24&locale=en-US&theme=light&language=en&ric=MSFT.O&token=${this.token}`
+          WIDGET_LIB_URL.TECHNICAL_CHART + `&token=${this.token}`
         ),
         height: 750,
       },
       incomeStatement: {
         path: this.sanitizer.bypassSecurityTrustResourceUrl(
-          `http://localhost:3000/widgetlibrary_dev/s360/income-statement/01?quoteHeader=1&widgetBorder=1&widgetPaddingTop=16&widgetPaddingRight=24&widgetPaddingBottom=36&widgetPaddingLeft=24&locale=en-US&theme=light&language=en&ric=MSFT.O&token=${this.token}`
+          WIDGET_LIB_URL.INCOME_STATEMENT + `&token=${this.token}`
         ),
         height: 850,
       },
       balanceSheet: {
         path: this.sanitizer.bypassSecurityTrustResourceUrl(
-          `http://localhost:3000/widgetlibrary_dev/s360/balance-sheet/01?quoteHeader=1&widgetBorder=1&widgetPaddingTop=16&widgetPaddingRight=24&widgetPaddingBottom=36&widgetPaddingLeft=24&locale=en-US&theme=light&language=en&ric=MSFT.O&token=${this.token}`
+          WIDGET_LIB_URL.BALANCE_SHEET + `&token=${this.token}`
         ),
         height: 850,
       },
       cashFlow: {
         path: this.sanitizer.bypassSecurityTrustResourceUrl(
-          `http://localhost:3000/widgetlibrary_dev/s360/cash-flow/01?quoteHeader=1&widgetBorder=1&widgetPaddingTop=16&widgetPaddingRight=24&widgetPaddingBottom=36&widgetPaddingLeft=24&locale=en-US&theme=light&language=en&ric=MSFT.O&token=${this.token}`
+          WIDGET_LIB_URL.CASH_FLOW + `&token=${this.token}`
         ),
         height: 700,
       },
       analystTargetPrice: {
         path: this.sanitizer.bypassSecurityTrustResourceUrl(
-          'http://localhost:3000/widgetlibrary_dev/s360/target-price/01?quoteHeader=1&widgetBorder=1&widgetPaddingTop=16&widgetPaddingRight=24&widgetPaddingBottom=36&widgetPaddingLeft=24&locale=en-US&theme=light&language=en&ric=MSFT.O&token=' +
-            this.token
+          WIDGET_LIB_URL.ANALYST_TARGET_PRICE + `&token=${this.token}`
         ),
         height: 500,
       },
       brokerRating: {
         path: this.sanitizer.bypassSecurityTrustResourceUrl(
-          `http://localhost:3000/widgetlibrary_dev/s360/broker-rating/01?quoteHeader=1&widgetBorder=1&widgetPaddingTop=16&widgetPaddingRight=24&widgetPaddingBottom=36&widgetPaddingLeft=24&locale=en-US&theme=light&language=en&ric=MSFT.O&token=${this.token}`
+          WIDGET_LIB_URL.BROKER_RATING + `&token=${this.token}`
+        ),
+        height: 500,
+      },
+      watchList: {
+        path: this.sanitizer.bypassSecurityTrustResourceUrl(
+          WIDGET_LIB_URL.WATCH_LIST + `&token=${this.token}`
         ),
         height: 500,
       },

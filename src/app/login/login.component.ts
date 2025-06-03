@@ -13,7 +13,8 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent {
   loginForm = this.fb.group({
-    token: ['', Validators.required],
+    name: ['', Validators.required],
+    password: ['', Validators.required],
   });
 
   constructor(
@@ -22,12 +23,15 @@ export class LoginComponent {
     private router: Router
   ) {}
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     if (this.loginForm.valid) {
-      const { token } = this.loginForm.value;
+      const { name, password } = this.loginForm.value;
 
-      if (token) {
-        this.authService.login(token);
+      if (name && password) {
+        await this.authService.login({
+          name,
+          password,
+        });
         this.router.navigate(['']);
       }
     }

@@ -1,0 +1,13 @@
+<main>
+  <app-header></app-header>
+  <app-sidebar></app-sidebar>
+
+  <main class="pt-20 pl-72 px-6 flex flex-row gap-1 flex-wrap">
+    <iframe
+      [src]="iframeSrc['path']"
+      frameborder="0"
+      [style.height.px]="iframeSrc['height']"
+      class="w-full"
+    ></iframe>
+  </main>
+</main>
